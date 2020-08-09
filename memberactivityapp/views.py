@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from django.views.generic import CreateView,TemplateView,UpdateView,DeleteView,DetailView,View
 from memberactivityapp.forms import MemberCreateForm,ActivityCreateForm
 from memberactivityapp.models import Members,Activity_Periods
@@ -43,7 +43,7 @@ class ActivityCreateView(CreateView):
     pk_url_kwarg = 'pk'
     def get_context_data(self,*args,**kwargs):
         context = super(ActivityCreateView,self).get_context_data(*args,**kwargs)
-        context['member'] = Members.objects.get(id = self.kwargs.get('pk'))
+        context['member'] = get_object_or_404(Members,id = self.kwargs.get('pk'))
         return context    
     def form_valid(self, form):
         print("Form instance",self.request.POST['members_id'])
