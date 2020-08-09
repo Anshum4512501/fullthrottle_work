@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                {% if members %}
+                <div class="members-listing shadow-sm p-3">
+                    {% for object in members %}
+                        <div class="row mb-3">
+                            
+                            <div class="col-md-3">
+                                <a href="{% url 'detail-member' pk=object.id %}" > {{object.real_name}}</a>                               
+                                
+                            </div>
+                            <div class="col-md-3">
+                                <a href="{% url 'update-member' pk=object.id %}" class="btn btn-info rounded-0 p-2">Edit</a>
+                            </div>
+
+                            <div class="col-md-3">
+                                <a href="{% url 'delete-member' pk=object.id %}" class="btn btn-danger rounded-0 p-2">Delete</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                    <h2 class="font-weight-lighter">There is no member</h2>
+                {% endif %}
+                
+            </div>
+            <div class="col-md-4">
+                <a href="{% url 'create-member' %}">Create Member</a>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}

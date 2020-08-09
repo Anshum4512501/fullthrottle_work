@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="row">
+    <div class="col-10 mx-auto">
+        <div class="row">
+            <div class="col-md-6">
+
+            </div>
+            
+            <div class="col-md-6">
+                <div class="right-column-member-form shadow-sm p-3 mt-2">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {% for field in form %}
+                        
+                        
+                        <div class="mb-3 row ">
+                            <div class="col-sm-4">
+                                <label for="" class="col-form-label  font-weight-light">{{field.label}}</label>
+                            </div>
+                            
+                            <div class="col-sm-8">
+                                {{field}}
+
+                            </div>
+                        </div>
+              
+              
+                        {% endfor %} 
+
+
+                        <input type="submit" class="btn btn-info rounded-0 p-2" value="submit">
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+    <div class="container">
+        <div class="row mt-2">
+            <div class="col-md-5">
+                <div class="members-listing shadow p-3">
+                    {{member.real_name}}
+                    <a href="{% url 'create-activity' pk=object.id %}" > add activity</a> 
+                </div>
+                
+                    
+            </div>
+            <div class="col-md-5">
+                {% if member.activities.all %}
+                <div class="members-listing shadow-sm p-3">
+                    {% for item in member.activities.all %}
+                     <p class="font-weight-light"> {{item.start_time}}</p>
+                     <p class="font-weight-light"> {{item.end_time}}</p> 
+                     <div class="row">
+                         <div class="col-md-6">
+                             <a href="{% url 'update-activity' pk=item.id %}" class="btn btn-info rounded-0 p-1">Edit</a>
+                         </div>
+                         <div class="col-md-6">
+                            <a href="{% url 'delete-activity' pk=item.id %}" class="btn btn-danger rounded-0 p-1">Delete</a>
+                        </div>
+                     </div>
+                    <br>
+                    <hr>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <h2 class="font-weight-light">No items found</h2>
+                {% endif %}
+                
+            </div>
+            <div class="col-md-2">
+                <a href="{% url 'create-member' %}">Create Member</a>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}
