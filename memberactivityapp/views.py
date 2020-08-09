@@ -67,8 +67,9 @@ class ActivityDeleteView(DeleteView):
     pk_url_kwarg = 'pk'
 
 class ApiView(SerializeMixin,View):
-    model = Activity_Periods
+    model = Members
     def get(self,*args,**kwargs):
+        
         qs = self.serialize(*args,**kwargs)
-        return JsonResponse(qs,safe=False)            
+        return JsonResponse(qs,safe=False)
 
